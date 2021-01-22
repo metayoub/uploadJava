@@ -13,6 +13,3 @@ jobs:
                   java-version: '11.x'
             - name: Build with Maven
               run: mvn -B package --file pom.xml
-            - name: Run backend test
-              run: |
-                  mvn test
