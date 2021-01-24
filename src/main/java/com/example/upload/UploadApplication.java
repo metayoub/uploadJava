@@ -20,7 +20,7 @@ public class UploadApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UploadApplication.class, args);
-		log.info("\n----------------start--------------------------------\n\t");
+		log.info("\n---------------------start--------------------------------\n\t");
 	}
 
 	@Override

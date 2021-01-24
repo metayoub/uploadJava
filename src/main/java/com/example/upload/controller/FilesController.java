@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +31,6 @@ public class FilesController {
     this.storageService = storageService;
   }
 
-
   @PostMapping("/upload")
   public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
     String message = "";
@@ -50,7 +50,7 @@ public class FilesController {
   public ResponseEntity<Resource> getFile(@PathVariable String filename) {
     try {
       Resource file = storageService.load(filename);
-      return ResponseEntity.ok()
+      return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

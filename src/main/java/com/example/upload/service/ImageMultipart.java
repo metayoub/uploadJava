@@ -3,6 +3,7 @@ package com.example.upload.service;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -20,11 +21,10 @@ public class ImageMultipart implements ImageSource {
     @Override
     public File asFile() throws IOException {
         String name = UUID.randomUUID().toString().replaceAll("-", "");
-        File imageFile = Files.createTempFile(name, ".tmp")
-                .toFile();
+        File imageFile = Files.createTempFile(name, ".tmp").toFile();
 
-        if (imageFile.exists()) {
-            multipartFile.transferTo(imageFile);
+        if (imageFile.exists() & imageFile.isFile()) {
+            Files.write(Paths.get(imageFile.getAbsolutePath()), multipartFile.getBytes());
         }
 
         return imageFile;

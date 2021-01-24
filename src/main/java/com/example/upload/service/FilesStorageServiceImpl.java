@@ -30,7 +30,6 @@ public class FilesStorageServiceImpl implements FilesStorageService {
   @Override
     public void compress(ImageSource imageSource, String imageName) {
         try {
-            // Path imagesPath = Files.createDirectories(Paths.get(imagesPathAsString));
             String compressedImageFileName = imageName + "." + JpgImage.EXTENSION;
             File compressedImageFile = this.root.resolve(compressedImageFileName)
                     .toFile();
